@@ -60,9 +60,9 @@ light mode switches on by itself when Cider is in light mode (Settings → Visua
 
 these themes all grew out of each other, each one inspired by the one before it:
 
-1. **[spotify-tui](https://github.com/Rigellute/spotify-tui)** by Rigellute, a Spotify client for the terminal written in Rust. this is where the terminal look started.
+1. **[spotify-tui](https://github.com/Rigellute/spotify-tui)** by [Rigellute](https://github.com/Rigellute), a Spotify client for the terminal written in Rust. this is where the terminal look started.
 2. **[spicetify text theme](https://github.com/spicetify/spicetify-themes/tree/master/text)** by [darkthemer](https://github.com/darkthemer/), a spicetify theme that mimics the look of spotify-tui.
-3. **[system24](https://github.com/refact0r/system24)** by refact0r, a tui-style discord theme inspired by the spicetify text theme.
+3. **[system24](https://github.com/refact0r/system24)** by [refact0r](https://github.com/refact0r), a tui-style discord theme inspired by the spicetify text theme.
 4. **system12** (this theme), a port of system24's look to Cider, named as a nod to it. the colors, the font and the overall design come from system24, and the Cider styling itself is written from scratch.
 
 thanks to everyone who made the ones before it. this theme is not affiliated with any of them.
