@@ -1,5 +1,5 @@
 <p align="center">
-<img width="256" height="256" alt="icon" src="https://github.com/user-attachments/assets/dae3fb5b-107b-4c11-9b8f-7e19f0b012cf" />
+<img width="256" height="256"  src="assets/icon.png" />
 </p>
 
 # system12
@@ -7,7 +7,7 @@
 a tui-style theme for [Cider](https://cider.sh). monospace text, black panels, square corners, and an accent color that follows whatever you pick in Cider. named after and ported from [system24](https://github.com/refact0r/system24), the discord theme.
 
 <p align="center">
-<img width="3000" height="600" alt="Banner" src="https://github.com/user-attachments/assets/90d9dce0-c88d-4252-92a0-81c45ebfeb36" />
+<img width="3000" height="600" alt="Banner" src="assets/Banner.png" />
 </p>
 
 ## Install
@@ -22,7 +22,7 @@ the folder must contain `theme.yml` and the `.css` files directly inside it, not
 
 > **renaming the folder?** disable the theme first, quit Cider, rename it, start Cider and enable it again. renaming it while it's enabled can leave Cider stuck on the old name.
 ## Preview
-<img width="957" height="515" alt="theme" src="https://github.com/user-attachments/assets/e3f74478-656d-4806-a96d-6e2b8baab31e" />
+<img width="957" height="515" alt="theme" src="assets/theme.png" />
 
 
 
