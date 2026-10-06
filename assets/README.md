@@ -2,7 +2,7 @@
 
 a tui-style theme for [Cider](https://cider.sh). monospace text, black panels, square corners, and an accent color that follows whatever you pick in Cider. named after and ported from [system24](https://github.com/refact0r/system24), the discord theme.
 
-<!-- add screenshots here, for example: ![songs](screenshots/songs.png) -->
+<!-- add screenshots here, for example: ![songs](assets/theme.png) -->
 
 ## install
 
