@@ -1,0 +1,130 @@
+/* CORE + LIGHT MODE (keep this on): colors, the accent color that follows Cider,
+   black background, and the light palette used when Cider is in light mode.
+   Every other stylesheet uses these variables, so turning this off breaks the rest. */
+:root {
+  --border-thickness: 2px;
+  --gap: 12px;
+
+  --text-0: var(--bg-4);
+  --text-1: oklch(95% 0 0);
+  --text-2: oklch(85% 0 0);
+  --text-3: oklch(75% 0 0);
+  --text-4: oklch(60% 0 0);
+  --text-5: oklch(40% 0 0);
+
+  --bg-1: oklch(31% 0 0);
+  --bg-2: oklch(27% 0 0);
+  --bg-3: oklch(0% 0 0);
+  --bg-4: oklch(0% 0 0);
+  --hover: oklch(54% 0 0 / 0.1);
+  --active: oklch(54% 0 0 / 0.2);
+  --active-2: oklch(54% 0 0 / 0.3);
+
+  --border-light: var(--hover);
+  --border: var(--active);
+}
+
+/* ---------- accent: follows the color the user picks in Cider ----------
+   @property makes --accent-base a real <color>: if Cider's variable is missing or
+   isn't a valid color, it falls back to the purple below instead of breaking.
+   Lightness is clamped so any picked color stays readable on the black background. */
+@property --accent-base {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: oklch(70% 0.12 310);
+}
+
+/* Selector is * on purpose: Cider sets --keyColor on an inner element, so every element must
+   read it from its own ancestors instead of inheriting a value computed at the top of the page. */
+* {
+  --accent-base: var(--keyColor, var(--systemAccentColor, oklch(70% 0.12 310)));
+  /* MANUAL OVERRIDE: to force one color always, copy the next line without its comment marks (any CSS color works) */
+  /* --accent-base: oklch(70% 0.12 310); */
+
+  --accent-2: oklch(from var(--accent-base) clamp(0.62, l, 0.85) c h);
+  --accent-1: oklch(from var(--accent-2) calc(l + 0.07) c h);
+  --accent-3: oklch(from var(--accent-2) calc(l - 0.05) c h);
+  --accent-4: oklch(from var(--accent-2) calc(l - 0.10) c h);
+  --accent-5: oklch(from var(--accent-2) calc(l - 0.15) c h);
+  --border-hover: var(--accent-2);
+}
+
+/* ---------- base: black background, text color ---------- */
+html, body, #app, #app-viewport {
+  background: var(--bg-4) !important;
+  color: var(--text-3);
+}
+
+b, strong, h1, h2, h3, h4 { color: var(--text-2); font-weight: 500; }
+a { color: var(--accent-1); }
+::selection { background: var(--accent-3); color: var(--text-0); }
+
+/* ---------- dim when window unfocused (Cider attribute) ---------- */
+body[window-blurred='true'] { --border: var(--border-light); }
+
+/* ================= LIGHT MODE ================= */
+
+/* Switches on when Cider is in light mode. Detection is body.body--light (Quasar). */
+/* =====================================================================
+   LIGHT MODE
+   Turns on when Cider is in light mode. Detection is a best guess:
+   Quasar's body.body--light, or a light sugar-color-scheme attribute.
+   If light mode doesn't change anything, inspect <body> in DevTools while in
+   light mode and send me its class list. To remove light mode, delete this section.
+   ===================================================================== */
+
+/* base tokens */
+:root:has(:is(body.body--light, .body--light, #app-viewport[sugar-color-scheme="light"])) {
+  color-scheme: light;
+
+  --text-0: oklch(98% 0 0);   /* text on colored (accent) elements */
+  --text-1: oklch(15% 0 0);
+  --text-2: oklch(22% 0 0);
+  --text-3: oklch(32% 0 0);
+  --text-4: oklch(48% 0 0);
+  --text-5: oklch(62% 0 0);
+
+  --bg-1: oklch(86% 0 0);
+  --bg-2: oklch(92% 0 0);
+  --bg-3: oklch(97% 0 0);
+  --bg-4: oklch(100% 0 0);
+  --hover: oklch(46% 0 0 / 0.08);
+  --active: oklch(46% 0 0 / 0.16);
+  --active-2: oklch(46% 0 0 / 0.25);
+}
+
+/* song list colors */
+:root:has(:is(body.body--light, .body--light, #app-viewport[sugar-color-scheme="light"])),
+:root:has(:is(body.body--light, .body--light, #app-viewport[sugar-color-scheme="light"])) #app-viewport {
+  --list-text: oklch(18% 0 0);
+  --list-text-dim: oklch(34% 0 0);
+  --list-header: oklch(42% 0 0);
+}
+
+/* accent: deeper shades so accent text/borders stay readable on white */
+:root:has(:is(body.body--light, .body--light, #app-viewport[sugar-color-scheme="light"])) * {
+  --accent-2: oklch(from var(--accent-base) clamp(0.42, l, 0.62) c h);
+  --accent-1: oklch(from var(--accent-2) calc(l - 0.06) c h);
+  --accent-3: oklch(from var(--accent-2) calc(l + 0.04) c h);
+  --accent-4: oklch(from var(--accent-2) calc(l + 0.08) c h);
+  --accent-5: oklch(from var(--accent-2) calc(l + 0.12) c h);
+}
+
+/* switch knob stays white on the accent track */
+:root:has(:is(body.body--light, .body--light, #app-viewport[sugar-color-scheme="light"]))
+  .c-switch__native:checked + .c-switch__track .c-switch__thumb {
+  background: #fff !important;
+}
+
+/* ---------- light mode fixes: text Cider leaves white ---------- */
+/* artists page: names in the left list */
+:root:has(:is(body.body--light, .body--light, #app-viewport[sugar-color-scheme="light"]))
+  .artist-item .artist-name {
+  color: var(--text-1) !important;
+}
+
+/* pop-up menus (top-left "..." menu etc.) */
+:root:has(:is(body.body--light, .body--light, #app-viewport[sugar-color-scheme="light"])) :is(.q-menu, [role="menu"]),
+:root:has(:is(body.body--light, .body--light, #app-viewport[sugar-color-scheme="light"])) :is(.q-menu, [role="menu"]) * {
+  color: var(--text-2) !important;
+}

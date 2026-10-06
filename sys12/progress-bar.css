@@ -1,0 +1,20 @@
+/* PROGRESS BAR: accent-colored fill with a blocky, text-style look. */
+
+/* ---------- 1. progress bar: accent fill + fixed blocky gaps ----------
+   Real Cider markup: .progress-bar-content > .progress-background (track) + .progress-current (played).
+   The gaps are ONE fixed overlay on the 6px strip, so they don't move as the fill grows.
+   To go back to a plain bar, delete the .progress-bar-content rules. Change 5px/7px to resize blocks. */
+.progress-bar-content .progress-current {
+  background-color: var(--accent-2) !important;
+}
+.progress-bar-content {
+  position: relative;
+}
+.progress-bar-content::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: repeating-linear-gradient(90deg, transparent 0 5px, var(--bg-4) 5px 7px);
+}

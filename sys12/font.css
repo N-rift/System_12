@@ -1,0 +1,71 @@
+/* MONO FONT: DM Mono everywhere, including lyrics (side panel and fullscreen),
+   with centered wrapped lyric lines and a smaller artist-list name size to fit the wider font.
+   Turn this off to keep Cider's default fonts. */
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&display=swap');
+
+:root {
+  --font: 'DM Mono', ui-monospace, 'Cascadia Mono', Menlo, monospace;
+  --font-weight: 300;
+  --letter-spacing: -0.05ch;
+}
+
+html, body, #app, #app-viewport {
+  font-family: var(--font) !important;
+  font-weight: var(--font-weight);
+  letter-spacing: var(--letter-spacing);
+}
+
+input, textarea, select { font-family: var(--font); }
+
+/* icon fonts (Material Icons etc.) turn letters like "cancel" into a symbol using ligatures,
+   and browsers switch ligatures off whenever letter-spacing is not zero.
+   Without this, icons show their raw names as text. */
+.q-icon, .material-icons, [class*="material-"] {
+  letter-spacing: normal !important;
+  font-variant-ligatures: normal !important;
+  font-feature-settings: "liga" 1 !important;
+}
+
+/* ---------- artists page: left list names were too big for a monospace font ----------
+   Change --artist-name-size to taste (bigger = more names get cut off with "…"). */
+.artist-item {
+  --artist-name-size: 15px;
+}
+.artist-item .artist-name {
+  font-size: var(--artist-name-size) !important;
+  font-weight: 500 !important;
+  line-height: 1.3 !important;
+}
+
+/* ---------- search results: the "Songs • Artist" line was huge ----------
+   Cider's own rule for it (11px) gets overridden by a big .artist-name style from the Artists page.
+   This puts it back to a small subtitle. Change the size to taste. */
+.cc-list-item .artist-name {
+  font-size: 12px !important;
+  font-weight: 400 !important;
+  line-height: 1.45 !important;
+  letter-spacing: normal !important;
+  color: var(--text-4) !important;
+}
+
+/* ================= LYRICS ================= */
+
+/* ---------- lyrics: use the theme's mono font ----------
+   Only the lyric text itself. Everything else in the lyrics panel (source list, icons, buttons)
+   is left alone so icon fonts keep working. */
+.lyric-text,
+.lyric-text *,
+.lyric-text-translated,
+.lyric-line .plain-word {
+  /* literal font name on purpose: Cider may redefine --font inside the lyrics view */
+  font-family: 'DM Mono', ui-monospace, 'Cascadia Mono', Menlo, monospace !important;
+  letter-spacing: -0.05ch;
+}
+
+/* ---------- fullscreen lyrics: center wrapped lines ----------
+   The wider mono font wraps long lines, and the wrapped word landed on the right. */
+[sfc-name="LyricViewFocus"] .lyric-text {
+  text-align: center !important;
+  justify-content: center !important;
+}

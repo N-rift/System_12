@@ -1,0 +1,54 @@
+/* SONG LIST: brighter, bolder text, readable column headers, and white text on the selected row. */
+
+/* ---------- song list: brighter, easier to read from a distance ----------
+   Targets Cider's real markup: .library-song-item > .fcol[fcol-type=...] */
+:root, #app-viewport {
+  --list-text: oklch(95% 0 0);        /* song titles */
+  --list-text-dim: oklch(84% 0 0);    /* artist, album, genre, time, etc. */
+  --list-weight: 500;                 /* other columns. DM Mono: 300 light, 400 normal, 500 medium */
+  --list-title-weight: 700;           /* song titles. DM Mono has no real bold, so 700 is browser-faked; use 500 for the heaviest true weight */
+}
+
+.library-song-item .fcol {
+  font-weight: var(--list-weight);
+}
+
+/* every text column: dim-but-readable */
+.library-song-item .fcol:not([fcol-type="rating"]):not([fcol-type="artwork"]),
+.library-song-item .fcol:not([fcol-type="rating"]):not([fcol-type="artwork"]) * {
+  color: var(--list-text-dim);
+}
+
+/* title column: brightest */
+.library-song-item .fcol[fcol-type="name"] .content-title,
+.library-song-item .fcol[fcol-type="name"] .content-title * {
+  color: var(--list-text);
+  font-weight: var(--list-title-weight);
+}
+
+/* ---------- 5. column headers: brighter, sorted column in accent ---------- */
+:root, #app-viewport {
+  --list-header: oklch(82% 0 0);
+}
+.library-songs-view .header-container {
+  border-bottom: 1px solid var(--border);
+}
+.library-songs-view .header-container .fcol,
+.library-songs-view .header-container .fcol * {
+  color: var(--list-header);
+  font-weight: 500;
+}
+.library-songs-view .header-container .fcol.sort-selected,
+.library-songs-view .header-container .fcol.sort-selected * {
+  color: var(--accent-1);
+}
+
+/* ---------- selected song row: keep text white on the accent fill ----------
+   Cider paints the selected row with the accent color and uses white text;
+   the dimmer list colors above made those columns hard to read on top of it. */
+.library-song-item.selected .fcol:not([fcol-type="rating"]):not([fcol-type="artwork"]),
+.library-song-item.selected .fcol:not([fcol-type="rating"]):not([fcol-type="artwork"]) *,
+.library-song-item.selected .fcol[fcol-type="name"] .content-title,
+.library-song-item.selected .fcol[fcol-type="name"] .content-title * {
+  color: #fff;
+}

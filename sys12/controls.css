@@ -1,0 +1,85 @@
+/* CONTROLS: hover/selected tints, the accent "cursor" bar on hovered rows and the
+   selected sidebar item, text fields, scrollbars, block caret, and toggle switches. */
+/* ---------- interactive states ----------
+   Overlays use background-image so they tint on top of an element's own
+   background-color (color swatches, accent buttons) instead of replacing it. */
+button, [role="button"], [role="menuitem"], li {
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+button:hover, [role="button"]:hover, [role="menuitem"]:hover {
+  background-image: linear-gradient(var(--hover), var(--hover));
+}
+button:active, [role="button"]:active {
+  background-image: linear-gradient(var(--active), var(--active));
+}
+.selected, [aria-selected="true"], [aria-current="page"] {
+  background-image: linear-gradient(var(--active), var(--active));
+  color: var(--text-1);
+}
+
+/* ---------- inputs ---------- */
+/* text-like fields only: sliders, checkboxes and radios keep their own look
+   (Cider draws the volume fill as the slider's background) */
+input:not([type="range"]):not([type="checkbox"]):not([type="radio"]):not([type="color"]),
+textarea, select {
+  background: var(--bg-2) !important;
+  border: 1px solid var(--border) !important;
+  color: var(--text-2) !important;
+  font-family: var(--font);
+}
+input:not([type="range"]):not([type="checkbox"]):not([type="radio"]):focus,
+textarea:focus { border-color: var(--accent-2) !important; outline: none; }
+
+
+/* ---------- sliders ---------- */
+input[type="range"] { accent-color: var(--accent-2); }
+
+/* ---------- scrollbars ---------- */
+::-webkit-scrollbar { width: 8px; height: 8px; background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--active-2); }
+::-webkit-scrollbar-thumb:hover { background: var(--accent-3); }
+::-webkit-scrollbar-track { background: transparent; }
+
+/* ---------- 6. accent-colored block caret in text boxes ----------
+   caret-shape is new; browsers that don't support it just ignore that line. */
+input, textarea {
+  caret-color: var(--accent-2);
+  caret-shape: block;
+}
+
+/* ---------- toggle switches: clear on/off states ----------
+   Real Cider markup: label.c-switch > input.c-switch__native + span.c-switch__track > span.c-switch__thumb
+   Uses inset box-shadow for the outline so the switch size doesn't change. */
+.c-switch__track {
+  background: var(--bg-2) !important;
+  box-shadow: inset 0 0 0 1px var(--border) !important;
+}
+.c-switch__thumb {
+  background: var(--text-4) !important;
+}
+.c-switch__native:checked + .c-switch__track {
+  background: var(--accent-4) !important;
+  box-shadow: inset 0 0 0 1px var(--accent-2) !important;
+}
+.c-switch__native:checked + .c-switch__track .c-switch__thumb {
+  background: var(--text-1) !important;
+}
+
+/* ================= CURSOR BAR ================= */
+
+/* ---------- 2. terminal "cursor" bar on hover / selected ---------- */
+.library-song-item:hover {
+  box-shadow: inset 3px 0 0 var(--accent-2) !important;
+}
+.router-link-exact-active,
+[aria-current="page"] {
+  box-shadow: inset 3px 0 0 var(--accent-2);
+}
+
+/* ---------- album / playlist play row: shuffle and "added" buttons were black on dark ----------
+   Their icons use currentColor, so the button's text color is the icon color.
+   Only the round flat buttons in the playback-actions row; the Play button is not touched. */
+[class*="playback-actions"] .c-btn.round.flat,
+[class*="playback-actions"] .c-btn.round.flat * {
+  color: var(--text-2) !important;
+}

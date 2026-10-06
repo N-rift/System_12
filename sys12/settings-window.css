@@ -1,0 +1,21 @@
+/* SETTINGS WINDOW: black window and tiles instead of an accent-tinted background. */
+
+/* ---------- settings window: black instead of accent-tinted ----------
+   Real Cider selectors (found via DevTools). Scoped to .settings-window only. */
+.settings-window {
+  --bgColor: var(--bg-3);
+  background: var(--bg-3) !important;
+  border: var(--border-thickness) solid var(--border) !important;
+}
+
+/* category tiles (General, Audio, Lyrics...) + profile and update cards */
+.settings-window :is(.settings-category-tile, .profile-hero-card, .settings-updates-widget) {
+  background-color: var(--bg-3) !important;
+  background-image: none !important;
+  border: 1px solid var(--border) !important;
+  transition: border-color 0.2s ease;
+}
+.settings-window :is(.settings-category-tile, .profile-hero-card, .settings-updates-widget):hover {
+  background-image: linear-gradient(var(--hover), var(--hover)) !important;
+  border-color: var(--text-5) !important;  /* neutral gray; use var(--accent-2) for an accent-colored outline */
+}

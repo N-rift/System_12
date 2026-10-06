@@ -1,0 +1,24 @@
+name: system12
+author: V
+stylesheets:
+  - file: core.css
+    name: Core 
+    description: Colors, accent that follows Cider, black background, light palette. Other parts need this.
+  - file: font.css
+    name:  Font 
+    description: DM Mono everywhere, including lyrics and the artist list
+  - file: square-and-top-bar.css
+    name: Square style
+    description: Square corners and same-size top bar buttons
+  - file: controls.css
+    name: Controls
+    description: Hover tints, accent cursor bar, text fields, scrollbars, toggle switches
+  - file: song-list.css
+    name: Song list
+    description: Brighter, bolder text, column headers, selected row
+  - file: progress-bar.css
+    name: Progress bar
+    description: Accent fill with a blocky text-style look
+  - file: settings-window.css
+    name: Settings window
+    description: Black settings window instead of an accent tint

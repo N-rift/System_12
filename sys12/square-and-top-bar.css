@@ -1,0 +1,34 @@
+/* SQUARE STYLE + TOP BAR: removes all rounded corners and makes the top-bar buttons
+   the same square size. These go together: square corners alone make the top-bar
+   buttons look odd, so keep both on or both off. */
+*, *::before, *::after {
+  border-radius: 0 !important;   /* system24 --unrounding: on */
+}
+
+/* ---------- volume slider: square knob to match the rest ---------- */
+.volume-range::-webkit-slider-thumb {
+  border-radius: 0 !important;
+}
+
+/* ================= TOP BAR ================= */
+
+/* ---------- top bar: uniform button sizes ----------
+   Scoped to the .chrome-top toolbar. Change --chrome-btn-size to resize them all.
+   To undo: delete this whole section. */
+.chrome-top {
+  --chrome-btn-size: 38px;
+}
+.chrome-top :is(.chrome-button, .nav-flipper .nav-back, .nav-flipper .nav-forward) {
+  width: var(--chrome-btn-size) !important;
+  height: var(--chrome-btn-size) !important;
+  min-width: 0 !important;
+  padding: 0 !important;
+  display: grid !important;
+  place-items: center;
+}
+
+/* buttons in a group (add, lyrics, queue) sit flush, no gap between them */
+.chrome-top .chrome-button-group {
+  gap: 0 !important;
+  column-gap: 0 !important;
+}
