@@ -1,24 +1,36 @@
+<p align="center">
+<img width="256" height="256" alt="icon" src="https://github.com/user-attachments/assets/dae3fb5b-107b-4c11-9b8f-7e19f0b012cf" />
+</p>
+
 # system12
 
 a tui-style theme for [Cider](https://cider.sh). monospace text, black panels, square corners, and an accent color that follows whatever you pick in Cider. named after and ported from [system24](https://github.com/refact0r/system24), the discord theme.
 
-<!-- add screenshots here, for example: ![songs](assets/theme.png) -->
+<p align="center">
+<img width="3000" height="600" alt="Banner" src="https://github.com/user-attachments/assets/90d9dce0-c88d-4252-92a0-81c45ebfeb36" />
+</p>
 
-## install
+## Install
+1- from [marketplace](https://marketplace.cider.sh/themes/106)  
 
-1. download this folder (`sys12`).
-2. put it in Cider's themes folder. on Windows that's usually `%appdata%\C2Windows\themes\`.
-3. restart Cider, open the theme settings and enable **system12**.
+2- manual install
+  1. download this folder (`sys12`).
+  2. put it in Cider's themes folder. on Windows that's usually `%appdata%\C2Windows\themes\`.
+  3. restart Cider, open the theme settings and enable **system12**.
 
 the folder must contain `theme.yml` and the `.css` files directly inside it, not one folder deeper.
 
 > **renaming the folder?** disable the theme first, quit Cider, rename it, start Cider and enable it again. renaming it while it's enabled can leave Cider stuck on the old name.
+## Preview
+<img width="957" height="515" alt="theme" src="https://github.com/user-attachments/assets/e3f74478-656d-4806-a96d-6e2b8baab31e" />
 
-## stylesheets
+
+
+## Style sheets
 
 the theme is split into parts. each one has its own checkbox in Cider's theme card, so you can switch off what you don't want.
 
-| stylesheet | what it does |
+| Style sheet | what it does |
 |---|---|
 | **Core** (keep on) | colors, the accent color that follows Cider, the black background, and the light palette for light mode. every other part uses these colors, so turning this off breaks the rest. |
 | **font** | DM Mono everywhere, including lyrics (side panel and fullscreen), and a smaller name size in the artists list so names fit the wider font. |
@@ -28,7 +40,7 @@ the theme is split into parts. each one has its own checkbox in Cider's theme ca
 | **Progress bar** | an accent-colored fill with a blocky, text-style look. |
 | **Settings window** | a black settings window instead of an accent-colored tint. |
 
-## customizing
+## Customizing
 
 open the `.css` file for the part you want and edit the values near the top.
 
@@ -43,11 +55,11 @@ open the `.css` file for the part you want and edit the values near the top.
 
 to use a different font, change the name in `--font` and in the `@import` line at the top of `font.css`, and use the same name in the lyrics rule further down that file.
 
-## light mode
+## Light mode
 
 light mode switches on by itself when Cider is in light mode (Settings → Visual → Color Scheme). it uses a white background, dark text, and deeper accent shades so accent text and borders stay readable on white.
 
-## notes
+## Notes
 
 - **the accent color** comes from Cider's `--keyColor` variable. plugins that recolor Cider, or adaptive colors, change it too, and the theme follows.
 - **pale accent colors** are hard to read on a light background. that's the color, not the theme. use the override line in `core.css` if you want a fixed, deeper one.
@@ -56,7 +68,7 @@ light mode switches on by itself when Cider is in light mode (Settings → Visua
 - **icons** use an icon font that breaks if the letter spacing isn't reset, so `font.css` resets it on icon elements. if you add global text rules, leave those alone.
 - the theme uses newer CSS (`oklch()` relative colors, `color-mix()`, `:has()`), which needs a recent Cider build.
 
-## where this comes from
+## Where this comes from
 
 these themes all grew out of each other, each one inspired by the one before it:
 
